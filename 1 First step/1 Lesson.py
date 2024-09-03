@@ -19,3 +19,4 @@ print(pt1.set_coords(1, 2))
 
 pt2 = Point()
 print(pt2.set_coords(11, 22))
+
