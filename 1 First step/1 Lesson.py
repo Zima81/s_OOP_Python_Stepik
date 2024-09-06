@@ -20,3 +20,41 @@ print(pt1.set_coords(1, 2))
 pt2 = Point()
 print(pt2.set_coords(11, 22))
 
+
+# 1.5  Инициализатор __init__ и финализатор __del__
+# out __init__
+class Point1:
+    def set(self, x, y):
+        self.x = x
+        self.y = y
+
+pt1 = Point1()
+pt1.set(1, 2)
+print(pt1.__dict__)
+# {'x': 1, 'y': 2}
+
+
+# with __init__
+class Point2:
+    def __init__(self, x=0, y=0):  # используются значения по умолчанию
+        self.x = x
+        self.y = y
+
+pt2 = Point2(1, 2)
+print(pt2.__dict__)
+# {'x': 1, 'y': 2}
+
+
+# with __del__
+class Point3:
+    def __init__(self, x=0, y=0):  # используются значения по умолчанию
+        print(f'создание экземпляра {self}')
+        self.x = x
+        self.y = y
+    def __del__(self):
+        print(f'удаление экземпляра {self}')
+
+pt3 = Point3(1, 2)
+# создание экземпляра <__main__.Point3 object at 0x0000024861383950>
+pt3 = 2
+# удаление экземпляра <__main__.Point3 object at 0x0000024861383950>
