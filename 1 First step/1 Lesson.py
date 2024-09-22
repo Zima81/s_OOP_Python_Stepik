@@ -58,3 +58,31 @@ pt3 = Point3(1, 2)
 # создание экземпляра <__main__.Point3 object at 0x0000024861383950>
 pt3 = 2
 # удаление экземпляра <__main__.Point3 object at 0x0000024861383950>
+
+
+#======================================================================================================================
+"""
+# 1.6 Магический метод __new__. 
+"""
+class Point:
+    def __new__(cls, *args, **kwargs):
+        print("вызов метода __new__ для" + str(cls))
+        return super().__new__(cls)
+
+    def __init__(self, x=0, y=0):
+        print("вызов метода __init__ для " + str(self))
+        self.x = x
+        self.y = y
+
+
+pt = Point(1, 2)
+
+""" Пример паттерна Singleton """
+class DataBase:
+    __isntase = None
+    def __new__(cls, *args, **kwargs):
+        if cls.__isntase == None:
+            cls.__isntase = super().__new__(cls)
+        return cls.__isntase
+    def __del__(self):
+        DataBase.__isntase = None
